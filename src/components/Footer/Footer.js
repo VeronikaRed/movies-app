@@ -1,3 +1,3 @@
 import { StyledFooter } from './styles';
 
-export const Header = () => <StyledFooter></StyledFooter>;
+export const Footer = () => <StyledFooter>Footer</StyledFooter>;
