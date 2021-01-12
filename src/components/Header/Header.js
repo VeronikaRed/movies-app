@@ -1,3 +1,8 @@
 import { StyledHeader } from './styles';
+import { StyledWidthLimiter } from '../../styles';
 
-export const Header = () => <StyledHeader>Header</StyledHeader>;
+export const Header = () => (
+    <StyledHeader>
+        <StyledWidthLimiter>Header</StyledWidthLimiter>
+    </StyledHeader>
+);

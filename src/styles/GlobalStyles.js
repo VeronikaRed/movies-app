@@ -9,11 +9,24 @@ export const GlobalStyles = createGlobalStyle`
 
 html{
     font-size: 62.5%;  // 10px => 1rem
+    height: 100%
 }
 
 body{
-    font-size: 1.6rem; 
+    height: 100%
+}
+
+body, button, input, textarea{
+    font-size: ${props => props.theme.defaultFontSize}; 
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: ${props => props.theme.defaultFontFamily};
+}
+
+button{
+    cursor: pointer;
+}
+
+#root{
+    height: 100%
 }
 `;

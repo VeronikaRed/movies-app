@@ -1,3 +1,8 @@
+import { StyledWidthLimiter } from '../../styles';
 import { StyledFooter } from './styles';
 
-export const Footer = () => <StyledFooter>Footer</StyledFooter>;
+export const Footer = () => (
+    <StyledFooter>
+        <StyledWidthLimiter>Footer</StyledWidthLimiter>
+    </StyledFooter>
+);
