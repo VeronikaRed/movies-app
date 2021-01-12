@@ -13,7 +13,8 @@ html{
 }
 
 body{
-    height: 100%
+    height: 100%;
+    color: ${props => props.theme.defaultColor}
 }
 
 body, button, input, textarea{
