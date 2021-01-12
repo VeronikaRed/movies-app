@@ -5,9 +5,9 @@ import { Footer } from '../Footer';
 import { StyledWidthLimiter } from '../../styles';
 import { StyledLayout, StyledMain } from './styles';
 
-export const Layout = ({ children }) => (
+export const Layout = ({ children, ...other }) => (
     <StyledLayout>
-        <Header />
+        <Header {...other} />
 
         <StyledMain>
             <StyledWidthLimiter>{children}</StyledWidthLimiter>
