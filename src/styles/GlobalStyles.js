@@ -26,6 +26,10 @@ button{
     cursor: pointer;
 }
 
+button, input{
+    outline: 0
+}
+
 #root{
     height: 100%
 }
