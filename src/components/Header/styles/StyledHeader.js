@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const StyledHeader = styled.header`
-    padding: 2rem;
-    color: ${props => props.theme.color};
-    background-color: ${props => props.theme.bgColor};
+    padding: ${props => props.theme.padding.md};
+    color: ${props => props.theme.header.color};
+    background: ${props => props.theme.header.background};
 `;
