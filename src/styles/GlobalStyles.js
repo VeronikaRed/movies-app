@@ -27,8 +27,11 @@ button{
     cursor: pointer;
 }
 
-button, input{
+button{
     outline: 0
+}
+input{
+    outline-color: #799F0C;
 }
 
 #root{

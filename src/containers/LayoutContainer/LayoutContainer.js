@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
@@ -7,12 +8,18 @@ export const LayoutContainer = ({ children }) => {
 
     const handleChangeSearch = e => setSearch(e.target.value);
 
-    const handleSearchMovies = () => {
+    const handleSearchMovies = async () => {
         setIsSearching(true);
-        setTimeout(() => {
-            setMovies([{ id: 1 }, { id: 2 }]);
+
+        try {
+            const { data } = await axios.get(
+                'https://jsonplaceholder.typicode.com/users'
+            );
+            setMovies(data);
             setIsSearching(false);
-        }, 2000);
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     return children({

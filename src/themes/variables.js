@@ -23,7 +23,8 @@ export const margin = {
     xl: '3rem'
 };
 export const lightColors = {
-    500: '#fff'
+    500: '#fff',
+    600: '#e2e2e2'
 };
 export const darkColors = {
     900: '#121212'

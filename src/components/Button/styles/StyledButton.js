@@ -8,4 +8,8 @@ export const StyledButton = styled.button`
     border-radius: 0.3rem;
     background: ${props => props.theme.button.background};
     color: ${props => props.theme.button.color};
+    &:disabled {
+        background: ${props => props.theme.lightColors[600]};
+        color: ${props => props.theme.lightColors[500]};
+    }
 `;
