@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+const { REACT_APP_API_URL, REACT_APP_MOVIE_API_KEY } = process.env;
+
 export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
     const [isSearching, setIsSearching] = useState(false);
@@ -12,13 +14,15 @@ export const LayoutContainer = ({ children }) => {
         setIsSearching(true);
 
         try {
-            const { data } = await axios.get(
-                'https://jsonplaceholder.typicode.com/users'
-            );
-            setMovies(data);
+            const url = `${REACT_APP_API_URL}/search/movie?api_key=${REACT_APP_MOVIE_API_KEY}&query=${search}`;
+            const {
+                data: { results }
+            } = await axios.get(url);
+
+            setMovies(results);
             setIsSearching(false);
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     };
 
