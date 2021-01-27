@@ -1,14 +1,21 @@
 import PT from 'prop-types';
-import { StyledWrapper } from './styles';
+
+import { Link } from '../../components';
+import { StyledWrapper, StyledCard } from './styles';
+
+const { REACT_APP_STORAGE_URL } = process.env;
 
 export const HomePage = ({ movies }) => (
     <StyledWrapper>
-        {movies.map(({ id, original_title, poster_path }) => (
-            <div key={id}>
-                <h1>{original_title}</h1>
-                <img src={poster_path} alt={original_title} />
-            </div>
-        ))}
+        {movies.map(({ id, original_title, poster_path }) => {
+            const imageUrl = REACT_APP_STORAGE_URL + poster_path;
+
+            return (
+                <StyledCard key={id} $imageUrl={imageUrl}>
+                    <Link href="/">{original_title}</Link>
+                </StyledCard>
+            );
+        })}
     </StyledWrapper>
 );
 

@@ -1,9 +1,11 @@
 import * as commonVariables from '../variables';
+import * as themeVariables from './variables';
 
 export const theme = {
     ...commonVariables,
+    ...themeVariables,
     header: {
-        background: 'linear-gradient(to right, #ACBB78, #799F0C)',
+        background: `linear-gradient(to right, ${themeVariables.primaryClr}, ${themeVariables.secondaryClr})`,
         color: '#fff'
     },
     footer: {
