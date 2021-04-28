@@ -25,13 +25,15 @@ body, button, input, textarea{
 
 button{
     cursor: pointer;
-}
-
-button{
     outline: 0
 }
+
 input{
     outline-color: #799F0C;
+}
+
+ul{
+    list-style-type: none;
 }
 
 #root{
