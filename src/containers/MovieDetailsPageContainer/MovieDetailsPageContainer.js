@@ -1,6 +1,6 @@
 import PT from 'prop-types';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MovieDetailsPage } from '../../pages';
@@ -15,6 +15,7 @@ export const MovieDetailsPageContainer = ({
     const [movie, setMovie] = useState(null);
     const [similarMovies, setSimilarMovies] = useState([]);
     const { movieId } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         const foundMovie = movies.find(({ id }) => id === +movieId);
@@ -56,6 +57,7 @@ export const MovieDetailsPageContainer = ({
                 setSimilarMovies(results.slice(0, 5));
             } catch (e) {
                 console.error(e);
+                history.push('/');
             }
         })();
     }, [movieId]);
