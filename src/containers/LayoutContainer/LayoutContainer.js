@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const { REACT_APP_API_URL, REACT_APP_MOVIE_API_KEY } = process.env;
 
@@ -7,6 +8,7 @@ export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [movies, setMovies] = useState([]);
+    const history = useHistory();
 
     const handleChangeSearch = e => setSearch(e.target.value);
 
@@ -19,8 +21,11 @@ export const LayoutContainer = ({ children }) => {
                 data: { results }
             } = await axios.get(url);
 
+            setSearch('');
             setMovies(results);
             setIsSearching(false);
+
+            history.push('/');
         } catch (e) {
             console.log(e);
         }

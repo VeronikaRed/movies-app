@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledDetails = styled.div`
     display: flex;
+    flex-direction: column;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;

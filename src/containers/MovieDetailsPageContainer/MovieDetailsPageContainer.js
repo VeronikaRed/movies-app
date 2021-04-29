@@ -13,29 +13,56 @@ export const MovieDetailsPageContainer = ({
     ...other
 }) => {
     const [movie, setMovie] = useState(null);
+    const [similarMovies, setSimilarMovies] = useState([]);
     const { movieId } = useParams();
 
     useEffect(() => {
-        const movie = movies.find(({ id }) => id === +movieId);
+        const foundMovie = movies.find(({ id }) => id === +movieId);
+        const similarMoviesUrl = `${REACT_APP_API_URL}/movie/${movieId}/similar?api_key=${REACT_APP_MOVIE_API_KEY}`;
 
-        if (movie) return setMovie(movie);
+        if (foundMovie) {
+            (async () => {
+                try {
+                    const {
+                        data: { results }
+                    } = await axios.get(similarMoviesUrl);
+                    setMovie(foundMovie);
+                    setSimilarMovies(results.slice(0, 5));
+                } catch (e) {
+                    console.error(e);
+                }
+            })();
+            return;
+        }
 
-        const url = `${REACT_APP_API_URL}/movie/${movieId}?api_key=${REACT_APP_MOVIE_API_KEY}`;
+        const movieUrl = `${REACT_APP_API_URL}/movie/${movieId}?api_key=${REACT_APP_MOVIE_API_KEY}`;
 
         (async () => {
             try {
-                const { data } = await axios.get(url);
-                console.log(data);
-                setMovie(data);
+                const [
+                    movieResponse,
+                    similarMovieResponse
+                ] = await Promise.all([
+                    axios.get(movieUrl),
+                    axios.get(similarMoviesUrl)
+                ]);
+
+                const { data: movieDetails } = movieResponse;
+                const {
+                    data: { results }
+                } = similarMovieResponse;
+
+                setMovie(movieDetails);
+                setSimilarMovies(results.slice(0, 5));
             } catch (e) {
                 console.error(e);
             }
         })();
-    }, []);
+    }, [movieId]);
 
-    if (!movie) return null;
+    if (!movie || !similarMovies.length) return null;
 
-    return <Component movie={movie} {...other} />;
+    return <Component movie={movie} similarMovies={similarMovies} {...other} />;
 };
 
 MovieDetailsPageContainer.propTypes = {
