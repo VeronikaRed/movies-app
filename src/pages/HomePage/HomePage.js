@@ -12,7 +12,7 @@ export const HomePage = ({ movies }) => (
 
             return (
                 <StyledCard key={id} $imageUrl={imageUrl}>
-                    <Link to="/">{original_title}</Link>
+                    <Link to={`/movie/${id}`}>{original_title}</Link>
                 </StyledCard>
             );
         })}

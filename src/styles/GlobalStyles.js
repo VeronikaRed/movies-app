@@ -36,6 +36,11 @@ ul{
     list-style-type: none;
 }
 
+img{
+    display: block;
+    width: 100%
+}
+
 #root{
     height: 100%
 }

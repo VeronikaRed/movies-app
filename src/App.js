@@ -1,7 +1,8 @@
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 import { Layout } from './components';
-import { LayoutContainer } from './containers';
+import { LayoutContainer, MovieDetailsPageContainer } from './containers';
 import { HomePage } from './pages';
 import { GlobalStyles } from './styles';
 import { darkTheme } from './themes';
@@ -21,6 +22,10 @@ export const App = () => (
                         <Switch>
                             <Route path={['/favorite', '/profile', '/logout']}>
                                 <FakePage />
+                            </Route>
+
+                            <Route path="/movie/:movieId" exact>
+                                <MovieDetailsPageContainer movies={movies} />
                             </Route>
 
                             <Route path="/" exact>
