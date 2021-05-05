@@ -5,7 +5,8 @@ const TITLE = {
     '/': 'Movies App | Home',
     '/favorite': 'Movies App | Favorite movies',
     '/profile': 'Movies App | Profile',
-    '/logout': 'Movies App | Logout'
+    '/logout': 'Movies App | Logout',
+    '/auth': 'Movies App | Auth'
 };
 
 export const useDocumentTitle = () => {

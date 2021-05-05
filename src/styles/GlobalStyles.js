@@ -41,6 +41,10 @@ img{
     width: 100%
 }
 
+fieldset{
+    border: none
+}
+
 #root{
     height: 100%
 }

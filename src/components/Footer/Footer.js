@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 export const Footer = () => (
     <StyledFooter>
         <StyledWidthLimiter>
-            <StyledCopyright>All Right Reserved, {year}</StyledCopyright>
+            <StyledCopyright>All Rights Reserved, {year}</StyledCopyright>
         </StyledWidthLimiter>
     </StyledFooter>
 );
