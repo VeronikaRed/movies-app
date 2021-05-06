@@ -30,6 +30,9 @@ export const darkColors = {
     800: 'rgba(0, 0, 0, 0.6)',
     900: '#121212'
 };
+export const commonColors = {
+    danger: 'red'
+};
 
 export const defaultFontFamily = fontFamily;
 export const defaultFontSize = fontSize.md;
