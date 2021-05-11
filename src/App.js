@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import { Layout } from './components';
 import { LayoutContainer, MovieDetailsPageContainer } from './containers';
 import { HomePage, AuthPage } from './pages';
@@ -11,36 +11,48 @@ const FakePage = () => {
     return <p>Hello! I'm a fake page!</p>;
 };
 
-export const App = () => (
-    <BrowserRouter>
-        <ThemeProvider theme={darkTheme}>
-            <GlobalStyles />
+const authSelector = state => !!state.auth.idToken;
 
-            <LayoutContainer>
-                {({ movies, ...other }) => (
-                    <Layout {...other}>
-                        <Switch>
-                            <Route path="/auth">
-                                <AuthPage />
-                            </Route>
+export const App = () => {
+    const isAuthenticated = useSelector(authSelector);
 
-                            <Route path={['/favorite', '/profile', '/logout']}>
-                                <FakePage />
-                            </Route>
+    return (
+        <BrowserRouter>
+            <ThemeProvider theme={darkTheme}>
+                <GlobalStyles />
 
-                            <Route path="/movie/:movieId">
-                                <MovieDetailsPageContainer movies={movies} />
-                            </Route>
+                <LayoutContainer>
+                    {({ movies, ...other }) => (
+                        <Layout {...other}>
+                            <Switch>
+                                {isAuthenticated && (
+                                    <Route path={['/favorite', '/profile']}>
+                                        <FakePage />
+                                    </Route>
+                                )}
 
-                            <Route path="/" exact>
-                                <HomePage movies={movies} />
-                            </Route>
+                                {!isAuthenticated && (
+                                    <Route path="/auth">
+                                        <AuthPage />
+                                    </Route>
+                                )}
 
-                            <Redirect to="/" />
-                        </Switch>
-                    </Layout>
-                )}
-            </LayoutContainer>
-        </ThemeProvider>
-    </BrowserRouter>
-);
+                                <Route path="/movie/:movieId">
+                                    <MovieDetailsPageContainer
+                                        movies={movies}
+                                    />
+                                </Route>
+
+                                <Route path="/" exact>
+                                    <HomePage movies={movies} />
+                                </Route>
+
+                                <Redirect to="/" />
+                            </Switch>
+                        </Layout>
+                    )}
+                </LayoutContainer>
+            </ThemeProvider>
+        </BrowserRouter>
+    );
+};

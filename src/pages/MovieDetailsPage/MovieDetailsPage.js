@@ -79,5 +79,6 @@ MovieDetailsPage.propTypes = {
         backdrop_path: PT.string,
         overview: PT.string.isRequired,
         release_date: PT.string.isRequired
-    }).isRequired
+    }).isRequired,
+    similarMovies: PT.arrayOf(PT.object).isRequired
 };
