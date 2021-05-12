@@ -31,7 +31,11 @@ const SIGN_IN_FIELDS = [
         name: 'email',
         placeholder: 'E-mail',
         validationRuled: {
-            required: 'E-mail is required'
+            required: 'E-mail is required',
+            pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g,
+                message: 'Provided value should be an e-mail address'
+            }
         }
     },
     {
@@ -78,7 +82,11 @@ const SIGN_UP_FIELDS = [
         name: 'email',
         placeholder: 'E-mail',
         validationRuled: {
-            required: 'E-mail is required'
+            required: 'E-mail is required',
+            pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g,
+                message: 'Provided value should be an e-mail address'
+            }
         }
     },
     {

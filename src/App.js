@@ -22,7 +22,7 @@ export const App = () => {
                 <GlobalStyles />
 
                 <LayoutContainer>
-                    {({ movies, ...other }) => (
+                    {({ movies, popularMovie, ...other }) => (
                         <Layout {...other}>
                             <Switch>
                                 {isAuthenticated && (
@@ -44,7 +44,10 @@ export const App = () => {
                                 </Route>
 
                                 <Route path="/" exact>
-                                    <HomePage movies={movies} />
+                                    <HomePage
+                                        movies={movies}
+                                        popularMovie={popularMovie}
+                                    />
                                 </Route>
 
                                 <Redirect to="/" />

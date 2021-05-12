@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useDocumentTitle, useAuthenticateUser } from '../../hooks';
@@ -9,6 +9,7 @@ export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [movies, setMovies] = useState([]);
+    const [popularMovie, setPopularMovie] = useState([]);
 
     const history = useHistory();
     useDocumentTitle();
@@ -27,6 +28,7 @@ export const LayoutContainer = ({ children }) => {
 
             setSearch('');
             setMovies(results);
+
             setIsSearching(false);
 
             history.push('/');
@@ -35,11 +37,34 @@ export const LayoutContainer = ({ children }) => {
         }
     };
 
+    const handleKeyDown = e => {
+        if (e.key === 'Enter') {
+            handleSearchMovies();
+        }
+    };
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const url = `${REACT_APP_API_URL}/movie/popular?api_key=${REACT_APP_MOVIE_API_KEY}&language=en-US&page=1`;
+                const {
+                    data: { results }
+                } = await axios.get(url);
+
+                setPopularMovie(results);
+            } catch (e) {
+                console.log(e);
+            }
+        })();
+    }, []);
+
     return children({
         search,
         isSearching,
         movies,
         onChangeSearch: handleChangeSearch,
-        onSearchMovies: handleSearchMovies
+        onSearchMovies: handleSearchMovies,
+        onKeyDown: handleKeyDown,
+        popularMovie
     });
 };

@@ -14,30 +14,34 @@ export const Header = ({
     search,
     isSearching,
     onChangeSearch,
-    onSearchMovies
-}) => (
-    <StyledHeader>
-        <StyledHeaderWidthLimiter>
-            <StyledSearch>
-                <StyledInputWrapper>
-                    <Input
-                        type="text"
-                        name="search"
-                        placeholder="Search movies"
-                        value={search}
-                        onChange={onChangeSearch}
-                    />
-                </StyledInputWrapper>
+    onSearchMovies,
+    onKeyDown
+}) => {
+    return (
+        <StyledHeader>
+            <StyledHeaderWidthLimiter>
+                <StyledSearch>
+                    <StyledInputWrapper>
+                        <Input
+                            type="text"
+                            name="search"
+                            placeholder="Search movies"
+                            value={search}
+                            onChange={onChangeSearch}
+                            onKeyDown={onKeyDown}
+                        />
+                    </StyledInputWrapper>
 
-                <Button onClick={onSearchMovies} disabled={isSearching}>
-                    {isSearching ? 'Searching' : 'Search'}
-                </Button>
-            </StyledSearch>
+                    <Button onClick={onSearchMovies} disabled={isSearching}>
+                        {isSearching ? 'Searching' : 'Search'}
+                    </Button>
+                </StyledSearch>
 
-            <NavBar />
-        </StyledHeaderWidthLimiter>
-    </StyledHeader>
-);
+                <NavBar />
+            </StyledHeaderWidthLimiter>
+        </StyledHeader>
+    );
+};
 
 Header.propTypes = {
     search: PT.string.isRequired,
