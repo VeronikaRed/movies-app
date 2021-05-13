@@ -1,0 +1,1 @@
+export { MovieDetailsPageContainer } from './MovieDetailsPageContainer';
