@@ -1,14 +1,14 @@
 import PT from 'prop-types';
 
 import { Link } from '../../components';
-import { StyledWrapper, StyledCard } from './styles';
+import { StyledWrapper, StyledCard, StyledTitle } from './styles';
 
 const { REACT_APP_STORAGE_URL } = process.env;
 
 export const HomePage = ({ movies, popularMovie }) => (
-    <StyledWrapper>
-        {movies.length === 0 &&
-            popularMovie.map(({ id, original_title, poster_path }) => {
+    <>
+        <StyledWrapper>
+            {movies.map(({ id, original_title, poster_path }) => {
                 const imageUrl = REACT_APP_STORAGE_URL + poster_path;
 
                 return (
@@ -17,17 +17,27 @@ export const HomePage = ({ movies, popularMovie }) => (
                     </StyledCard>
                 );
             })}
+        </StyledWrapper>
 
-        {movies.map(({ id, original_title, poster_path }) => {
-            const imageUrl = REACT_APP_STORAGE_URL + poster_path;
+        {movies.length === 0 && (
+            <div>
+                <StyledTitle>Popular movie:</StyledTitle>
+                <StyledWrapper>
+                    {popularMovie.map(({ id, original_title, poster_path }) => {
+                        const imageUrl = REACT_APP_STORAGE_URL + poster_path;
 
-            return (
-                <StyledCard key={id} $imageUrl={imageUrl}>
-                    <Link to={`/movie/${id}`}>{original_title}</Link>
-                </StyledCard>
-            );
-        })}
-    </StyledWrapper>
+                        return (
+                            <StyledCard key={id} $imageUrl={imageUrl}>
+                                <Link to={`/movie/${id}`}>
+                                    {original_title}
+                                </Link>
+                            </StyledCard>
+                        );
+                    })}
+                </StyledWrapper>
+            </div>
+        )}
+    </>
 );
 
 HomePage.propTypes = {

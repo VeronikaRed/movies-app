@@ -40,13 +40,9 @@ export const MovieDetailsPageContainer = ({
 
         (async () => {
             try {
-                const [
-                    movieResponse,
-                    similarMovieResponse
-                ] = await Promise.all([
-                    axios.get(movieUrl),
-                    axios.get(similarMoviesUrl)
-                ]);
+                const [movieResponse, similarMovieResponse] = await Promise.all(
+                    [axios.get(movieUrl), axios.get(similarMoviesUrl)]
+                );
 
                 const { data: movieDetails } = movieResponse;
                 const {
