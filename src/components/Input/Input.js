@@ -1,6 +1,5 @@
 import PT from 'prop-types';
 import { forwardRef } from 'react';
-
 import { StyledInput } from './styles';
 
 export const Input = forwardRef(({ autoComplete = 'off', ...other }, ref) => (

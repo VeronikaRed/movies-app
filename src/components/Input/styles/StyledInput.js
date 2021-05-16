@@ -6,6 +6,6 @@ export const StyledInput = styled.input`
     display: block;
     width: 100%;
     padding: ${props => `${padding} ${props.theme.padding.sm}`};
-    border-radius: 0.3rem;
+    border-radius: ${props => props.theme.borderRadius.sm};
     border: none;
 `;

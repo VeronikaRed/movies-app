@@ -9,7 +9,7 @@ export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [movies, setMovies] = useState([]);
-    const [popularMovie, setPopularMovie] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([]);
 
     const history = useHistory();
     useDocumentTitle();
@@ -18,22 +18,24 @@ export const LayoutContainer = ({ children }) => {
     const handleChangeSearch = e => setSearch(e.target.value);
 
     const handleSearchMovies = async () => {
-        setIsSearching(true);
+        if (search) {
+            setIsSearching(true);
 
-        try {
-            const url = `${REACT_APP_API_URL}/search/movie?api_key=${REACT_APP_MOVIE_API_KEY}&query=${search}`;
-            const {
-                data: { results }
-            } = await axios.get(url);
+            try {
+                const url = `${REACT_APP_API_URL}/search/movie?api_key=${REACT_APP_MOVIE_API_KEY}&query=${search}`;
+                const {
+                    data: { results }
+                } = await axios.get(url);
 
-            setSearch('');
-            setMovies(results);
+                setSearch('');
+                setMovies(results);
 
-            setIsSearching(false);
+                setIsSearching(false);
 
-            history.push('/');
-        } catch (e) {
-            console.log(e);
+                history.push('/');
+            } catch (e) {
+                console.log(e);
+            }
         }
     };
 
@@ -51,7 +53,7 @@ export const LayoutContainer = ({ children }) => {
                     data: { results }
                 } = await axios.get(url);
 
-                setPopularMovie(results);
+                setPopularMovies(results);
             } catch (e) {
                 console.log(e);
             }
@@ -65,6 +67,6 @@ export const LayoutContainer = ({ children }) => {
         onChangeSearch: handleChangeSearch,
         onSearchMovies: handleSearchMovies,
         onKeyDown: handleKeyDown,
-        popularMovie
+        popularMovies
     });
 };

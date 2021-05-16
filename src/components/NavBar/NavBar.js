@@ -1,8 +1,8 @@
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from '../Link';
-import { StyledNavList, StyledNavItem } from './styles';
 import { logoutUser } from '../../store';
+import { StyledNavList, StyledNavItem } from './styles';
 
 const NOT_AUTHENTICATION_LINKS = [
     {
@@ -32,11 +32,6 @@ const AUTHENTICATION_LINKS = [
     },
     {
         id: 3,
-        url: '/profile',
-        title: 'Profile'
-    },
-    {
-        id: 4,
         title: 'Logout'
     }
 ];

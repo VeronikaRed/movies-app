@@ -1,11 +1,12 @@
 import PT from 'prop-types';
 
 import { Link } from '../../components';
-import { StyledWrapper, StyledCard, StyledTitle } from './styles';
+import { StyledWrapper, StyledCard } from './styles';
+import { StyledTitle } from '../../styles';
 
 const { REACT_APP_STORAGE_URL } = process.env;
 
-export const HomePage = ({ movies, popularMovie }) => (
+export const HomePage = ({ movies, popularMovies }) => (
     <>
         <StyledWrapper>
             {movies.map(({ id, original_title, poster_path }) => {
@@ -23,17 +24,20 @@ export const HomePage = ({ movies, popularMovie }) => (
             <div>
                 <StyledTitle>Popular movie:</StyledTitle>
                 <StyledWrapper>
-                    {popularMovie.map(({ id, original_title, poster_path }) => {
-                        const imageUrl = REACT_APP_STORAGE_URL + poster_path;
+                    {popularMovies.map(
+                        ({ id, original_title, poster_path }) => {
+                            const imageUrl =
+                                REACT_APP_STORAGE_URL + poster_path;
 
-                        return (
-                            <StyledCard key={id} $imageUrl={imageUrl}>
-                                <Link to={`/movie/${id}`}>
-                                    {original_title}
-                                </Link>
-                            </StyledCard>
-                        );
-                    })}
+                            return (
+                                <StyledCard key={id} $imageUrl={imageUrl}>
+                                    <Link to={`/movie/${id}`}>
+                                        {original_title}
+                                    </Link>
+                                </StyledCard>
+                            );
+                        }
+                    )}
                 </StyledWrapper>
             </div>
         )}
@@ -49,7 +53,7 @@ HomePage.propTypes = {
         })
     ).isRequired,
 
-    popularMovie: PT.arrayOf(
+    popularMovies: PT.arrayOf(
         PT.shape({
             id: PT.number.isRequired,
             original_title: PT.string.isRequired,

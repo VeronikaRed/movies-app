@@ -8,15 +8,15 @@ import {
     StyledImageWrapper,
     StyledInfoWrapper,
     StyledInfo,
-    StyledTitle,
     StyledReleaseDate,
     StyledDetailsTop,
     StyledSimilarMoviesWrapper
 } from './styles';
+import { StyledTitle } from '../../styles';
 
 const { REACT_APP_STORAGE_URL } = process.env;
 
-export const MovieDetailsPage = ({ movie, similarMovies }) => {
+export const MovieDetailsPage = ({ movie, similarMovies, onAddFavorite }) => {
     const {
         backdrop_path,
         original_title,
@@ -45,7 +45,7 @@ export const MovieDetailsPage = ({ movie, similarMovies }) => {
                             <p>{overview}</p>
                         </StyledInfo>
 
-                        <Button>Add to Favorite</Button>
+                        <Button onClick={onAddFavorite}>Add to Favorite</Button>
                     </StyledInfoWrapper>
                 </StyledDetailsTop>
                 <StyledSimilarMoviesWrapper>
@@ -80,5 +80,6 @@ MovieDetailsPage.propTypes = {
         overview: PT.string.isRequired,
         release_date: PT.string.isRequired
     }).isRequired,
-    similarMovies: PT.arrayOf(PT.object).isRequired
+    similarMovies: PT.arrayOf(PT.object).isRequired,
+    onAddFavorite: PT.func.isRequired
 };

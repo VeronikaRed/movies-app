@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { authReducer } from './reducers';
+import { authReducer, movieListReducer } from './reducers';
 
 export const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    favorite: movieListReducer
 });

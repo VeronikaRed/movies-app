@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const StyledDetails = styled.div`
     display: flex;
@@ -8,7 +8,7 @@ export const StyledDetails = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(${props => props.$imageUrl});
-    border-radius: 0.5rem;
+    border-radius: ${props => props.theme.borderRadius.md};
     padding: ${props => props.theme.padding.md};
     position: relative;
 
@@ -20,6 +20,6 @@ export const StyledDetails = styled.div`
         width: 100%;
         height: 100%;
         background-color: ${props => props.theme.darkColors[800]};
-        border-radius: 0.5rem;
+        border-radius: ${props => props.theme.borderRadius.md};
     }
 `;

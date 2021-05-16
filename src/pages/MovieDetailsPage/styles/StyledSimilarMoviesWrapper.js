@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { StyledLink } from '../../../components/Link';
+
 export const StyledSimilarMoviesWrapper = styled.div`
     display: flex;
     margin-top: ${props => props.theme.margin.md};

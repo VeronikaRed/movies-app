@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 const applyActiveStyles = ({ $active, theme }) => {
     const lightClr = theme.lightColors[600];

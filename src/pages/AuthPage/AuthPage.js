@@ -3,6 +3,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { Button, Input } from '../../components';
 import {
     StyledWrapper,
     StyledFormWrapper,
@@ -11,7 +12,6 @@ import {
     StyledTabs,
     StyledTab
 } from './styles';
-import { Button, Input } from '../../components';
 import {
     StyledLabel,
     StyledLegend,
@@ -60,20 +60,14 @@ const SIGN_UP_FIELDS = [
         label: 'First name',
         type: 'text',
         name: 'firstName',
-        placeholder: 'First name',
-        validationRuled: {
-            required: 'First name is required'
-        }
+        placeholder: 'First name'
     },
     {
         id: 'lastName',
         label: 'Last name',
         type: 'text',
         name: 'lastName',
-        placeholder: 'Last name',
-        validationRuled: {
-            required: 'Last name is required'
-        }
+        placeholder: 'Last name'
     },
     {
         id: 'email',
@@ -94,10 +88,7 @@ const SIGN_UP_FIELDS = [
         label: 'Age',
         type: 'number',
         name: 'ege',
-        placeholder: 'Age',
-        validationRuled: {
-            required: 'Age is required'
-        }
+        placeholder: 'Age'
     },
     {
         id: 'password',
@@ -160,6 +151,7 @@ export const AuthPage = () => {
             activeTab === tabs.SIGN_IN ? 'signInWithPassword' : 'signUp';
 
         const url = `${authUrl}${mode}?key=${apiKey}`;
+
         try {
             const {
                 data: { idToken, localId }

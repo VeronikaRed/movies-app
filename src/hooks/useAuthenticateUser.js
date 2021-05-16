@@ -9,5 +9,6 @@ export const useAuthenticateUser = () => {
         const localId = localStorage.getItem('localId');
         if (!idToken || !localId) return;
         dispatch(authenticateUser(idToken, localId));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 };

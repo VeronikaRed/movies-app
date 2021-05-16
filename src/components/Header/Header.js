@@ -47,5 +47,6 @@ Header.propTypes = {
     search: PT.string.isRequired,
     onChangeSearch: PT.func.isRequired,
     onSearchMovies: PT.func.isRequired,
-    isSearching: PT.bool.isRequired
+    isSearching: PT.bool.isRequired,
+    onKeyDown: PT.func.isRequired
 };

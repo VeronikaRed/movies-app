@@ -1,2 +1,2 @@
+export { AuthPage } from './AuthPage';
 export * from './styles';
-export {AuthPage} from './AuthPage'

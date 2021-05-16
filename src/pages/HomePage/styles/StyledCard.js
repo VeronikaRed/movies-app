@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 import { StyledLink } from '../../../components/Link';
 
 const maxWidth = '50rem';
-const borderRadius = '0.5rem';
 const borderWidth = '0.2rem';
 
 export const StyledCard = styled.div`
@@ -15,7 +14,7 @@ export const StyledCard = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${props => props.$imageUrl});
-    border-radius: ${borderRadius};
+    border-radius: ${props => props.theme.borderRadius.md};
     position: relative;
 
     &::before {
@@ -25,7 +24,7 @@ export const StyledCard = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        border-radius: ${borderRadius};
+        border-radius: ${props => props.theme.borderRadius.md};
         background-color: transparent;
         transition: background-color 300ms ease;
     }
